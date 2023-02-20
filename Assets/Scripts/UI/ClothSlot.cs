@@ -7,10 +7,13 @@ public class ClothSlot : MonoBehaviour
 {
     [SerializeField] private Image clothImage;
     [SerializeField] private Image selectedIcon;
+    private Cloth slotCloth;
+    
 
-    public void Select()
+    public virtual void Select()
     {
         selectedIcon.enabled = true;
+
     }
 
     public void Deselect()
@@ -20,14 +23,18 @@ public class ClothSlot : MonoBehaviour
 
     public void SetCloth(Cloth cloth)
     {
-        if (cloth == null)
-        {
-
-            
-            
-        }
+        slotCloth = cloth;
+        clothImage.sprite = cloth.clothMainSprite;
+        clothImage.enabled = true;
     }
 
+    public void ResetSlot()
+    {
+        slotCloth = null;
+        clothImage.enabled = false;
+        selectedIcon.enabled = false;
+    }
+ 
 
-
+    
 }
