@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class Fade : MonoBehaviour
-{
-    private CanvasGroup canvasGroup;
+{  
     public static Fade Instance { get; private set; }
     [SerializeField] private bool FadeInOnStart;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
