@@ -55,7 +55,6 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-
     public void DisplayNextSentence() 
     {
         if (sentences.Count == 0)
@@ -77,7 +76,6 @@ public class DialogueManager : MonoBehaviour
         OnFinishDialogue?.Invoke();    
 
     }
-
 
     private void SkipSentence(InputAction.CallbackContext context) //ON Hold
     {

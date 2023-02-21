@@ -56,7 +56,6 @@ public class InteractionManager : MonoBehaviour
 
         }
 
-        Debug.Log(hit.transform.name);
         Interactable newInteractable = hit.transform.gameObject.GetComponent<Interactable>();
 
         if (newInteractable == null) //If found object is not interactable

@@ -3,41 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ShopCartUI : ClothSlotBasedUI
+public class ClothesRackUI : ClothSlotBasedUI
 {
     [SerializeField] private TextMeshProUGUI selectedItemPriceUIText;
-    [SerializeField] private TextMeshProUGUI totalPriceUIText;
-
+    [SerializeField] private ShopCartUI shopCartUI;
     public override void Awake()
     {
         base.Awake();
-        ShopCart.OnChangeClothesOnShopCart += UpdateSlotsUI;
+        ClothesRack.OnChangeClothesOnShopCart += UpdateSlotsUI;
         ShopCartClothSlot.OnSelectCartShopCartClothSlot += SlotSelectManager;
+        ClothRackClothSlot.OnSelectClothRackClothSlot += SlotSelectManager;
 
     }
 
-    protected override void ShowUI()
+    public override void ShowUI()
     {
         base.ShowUI();
-        UpdateSlotsUI(ShopCart.Instance.clothes);
-        Debug.Log(ShopCart.Instance.clothes.Count);
+        shopCartUI.ShowUI();
+        UpdateSlotsUI(ClothesRack.Instance.clothes);
     }
 
-    protected override void UpdateSlotsUI(List<Cloth> cloths)
+    public override void HideUI()
     {
-        
-        base.UpdateSlotsUI(cloths);
-        totalPriceUIText.text = "$"+ShopCart.Instance.GetTotalCartBalance().ToString("0.00");
-       
+        base.HideUI();
+        shopCartUI.HideUI();
     }
 
     public override void SlotSelectManager(ClothSlot selectedClothSlot)
     {
         base.SlotSelectManager(selectedClothSlot);
         int index = clothesSlots.IndexOf(selectedClothSlot);
-        ShopCart.Instance.SetSelectedCloth(index);
+        ClothesRack.Instance.SetSelectedCloth(index);
 
-        Cloth cloth = ShopCart.Instance.GetCurrentSelectedCloth();
+        Cloth cloth = ClothesRack.Instance.GetCurrentSelectedCloth();
         if (cloth != null)
         {
             selectedItemPriceUIText.text = "$" + cloth.price.ToString("0.00");
@@ -51,8 +49,9 @@ public class ShopCartUI : ClothSlotBasedUI
 
     private void OnDisable()
     {
-        ShopCart.OnChangeClothesOnShopCart -= UpdateSlotsUI;
-        ShopCartClothSlot.OnSelectCartShopCartClothSlot -= SlotSelectManager;
+        ClothesRack.OnChangeClothesOnShopCart -= UpdateSlotsUI;
+        ClothRackClothSlot.OnSelectClothRackClothSlot -= SlotSelectManager;
+
     }
 
 }

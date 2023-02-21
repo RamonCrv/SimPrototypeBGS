@@ -16,7 +16,6 @@ public class DialogueUI : MonoBehaviour
 
     public static bool FinishedDisplayingDialogue { get; private set; }
 
-
     private void Awake()
     {
         DialogueManager.OnStartDialogue += ShowDialogueBox;
@@ -56,16 +55,11 @@ public class DialogueUI : MonoBehaviour
         LeanTween.moveLocalY(gameObject, closedPosition, animationTime).setEaseInBack();
     }
 
-
-
-
     private void OnDisable()
     {
         DialogueManager.OnStartDialogue -= ShowDialogueBox;
         DialogueManager.OnFinishDialogue -= HideDialogueBox;
         DialogueManager.OnDisplayNextSentence -= DisplayDilogueText;
     }
-
-
 
 }

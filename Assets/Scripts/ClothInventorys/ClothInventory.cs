@@ -8,7 +8,7 @@ public class ClothInventory : MonoBehaviour
     [SerializeField] protected int currentSelectedClothIndex = -1;
     [SerializeField] public List<Cloth> clothes;
 
-    public virtual void RemoveClothFromCart()
+    public virtual void RemoveClothFromList()
     {
         if (currentSelectedClothIndex == -1)
         {
@@ -24,13 +24,20 @@ public class ClothInventory : MonoBehaviour
 
     }
 
-    public virtual void AddClothToCart(Cloth newCloth)
+    public virtual void AddClothToList(Cloth newCloth)
     {
-        if (clothes.Contains(newCloth) == true)
+        Debug.Log(newCloth);
+        if (newCloth == null)
         {
+            Debug.Log("É nula");
             return;
         }
-
+        if (clothes.Contains(newCloth) == true)
+        {
+            Debug.Log("Já tem");
+            return;
+        }
+        Debug.Log("ADicionou");
         clothes.Add(newCloth);
 
     }

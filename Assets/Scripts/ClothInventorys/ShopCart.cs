@@ -15,15 +15,15 @@ public class ShopCart : ClothInventory
         Instance = this;
     }
 
-    public override void RemoveClothFromCart()
+    public override void RemoveClothFromList()
     {
-        base.RemoveClothFromCart();
+        base.RemoveClothFromList();
         OnChangeClothesOnShopCart?.Invoke(clothes);
     }
 
-    public override void AddClothToCart(Cloth newCloth)
+    public override void AddClothToList(Cloth newCloth)
     {
-        base.AddClothToCart(newCloth);
+        base.AddClothToList(newCloth);
         OnChangeClothesOnShopCart?.Invoke(clothes);
     }
 

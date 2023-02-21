@@ -43,16 +43,20 @@ public class ClothSlotBasedUI : MonoBehaviour
         }
     }
 
-    protected virtual void ShowUI()
+    public virtual void ShowUI()
     {
         isOpen = true;
         AnimatePanel(openPosition, openScale, 1);
     }
 
-    protected void HideUI()
+    public virtual void HideUI()
     {
         isOpen = false;
-        AnimatePanel(closePosition, Vector2.zero, 0);
+        if (canvasGroup != null)
+        {
+            AnimatePanel(closePosition, Vector2.zero, 0);
+        }     
+        
     }
 
     protected void AnimatePanel(Vector2 position, Vector2 scale, float alpha)
@@ -71,12 +75,11 @@ public class ClothSlotBasedUI : MonoBehaviour
 
     protected virtual void UpdateSlotsUI(List<Cloth> cloths)
     {
-        Debug.Log("Entrou no Update base. Quantidade de roupas: "+cloths.Count);
         for (int i = 0; i < clothesSlots.Count; i++)
         {
             if (i < cloths.Count) //For each cloth in the list, give them to a slot
             {
-                Debug.Log(cloths[i]);
+
                 clothesSlots[i].SetCloth(cloths[i]);
             }
             else
