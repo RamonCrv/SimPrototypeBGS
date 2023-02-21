@@ -8,6 +8,7 @@ public class ShopCart : ClothInventory
 {
     public static ShopCart Instance { get; private set; }    
     public static Action<List<Cloth>> OnChangeClothesOnShopCart;
+    public static Action OnSelectNewCloth;
 
 
     private void Awake()
@@ -25,6 +26,12 @@ public class ShopCart : ClothInventory
     {
         base.AddClothToList(newCloth);
         OnChangeClothesOnShopCart?.Invoke(clothes);
+    }
+
+    public override void SetSelectedCloth(int index)
+    {
+        base.SetSelectedCloth(index);
+        OnSelectNewCloth?.Invoke();
     }
 
     public float GetTotalCartBalance()

@@ -6,7 +6,6 @@ using TMPro;
 public class ClothesRackUI : ClothSlotBasedUI
 {
     [SerializeField] private TextMeshProUGUI selectedItemPriceUIText;
-    [SerializeField] private ShopCartUI shopCartUI;
     public override void Awake()
     {
         base.Awake();
@@ -19,14 +18,18 @@ public class ClothesRackUI : ClothSlotBasedUI
     public override void ShowUI()
     {
         base.ShowUI();
-        shopCartUI.ShowUI();
+        ShopCartUI.Instance.ShowUI();
         UpdateSlotsUI(ClothesRack.Instance.clothes);
     }
 
     public override void HideUI()
     {
         base.HideUI();
-        shopCartUI.HideUI();
+        if (ShopCartUI.Instance != null)
+        {
+            ShopCartUI.Instance.HideUI();
+        }
+        
     }
 
     public override void SlotSelectManager(ClothSlot selectedClothSlot)

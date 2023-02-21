@@ -7,10 +7,12 @@ public class ShopCartUI : ClothSlotBasedUI
 {
     [SerializeField] private TextMeshProUGUI selectedItemPriceUIText;
     [SerializeField] private TextMeshProUGUI totalPriceUIText;
+    public static ShopCartUI Instance { get; private set; }
 
     public override void Awake()
     {
         base.Awake();
+        Instance = this;
         ShopCart.OnChangeClothesOnShopCart += UpdateSlotsUI;
         ShopCartClothSlot.OnSelectCartShopCartClothSlot += SlotSelectManager;
 
@@ -27,7 +29,8 @@ public class ShopCartUI : ClothSlotBasedUI
         
         base.UpdateSlotsUI(cloths);
         totalPriceUIText.text = "$"+ShopCart.Instance.GetTotalCartBalance().ToString("0.00");
-       
+        UpdateCurrentSelectedClothPrice();
+
     }
 
     public override void SlotSelectManager(ClothSlot selectedClothSlot)
@@ -35,7 +38,14 @@ public class ShopCartUI : ClothSlotBasedUI
         base.SlotSelectManager(selectedClothSlot);
         int index = clothesSlots.IndexOf(selectedClothSlot);
         ShopCart.Instance.SetSelectedCloth(index);
+        UpdateCurrentSelectedClothPrice();
 
+
+
+    }
+
+    private void UpdateCurrentSelectedClothPrice()
+    {
         Cloth cloth = ShopCart.Instance.GetCurrentSelectedCloth();
         if (cloth != null)
         {
@@ -45,7 +55,6 @@ public class ShopCartUI : ClothSlotBasedUI
         {
             selectedItemPriceUIText.text = "$0.00";
         }
-
     }
 
     private void OnDisable()

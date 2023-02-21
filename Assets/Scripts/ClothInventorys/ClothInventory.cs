@@ -29,15 +29,12 @@ public class ClothInventory : MonoBehaviour
         Debug.Log(newCloth);
         if (newCloth == null)
         {
-            Debug.Log("É nula");
             return;
         }
         if (clothes.Contains(newCloth) == true)
         {
-            Debug.Log("Já tem");
             return;
         }
-        Debug.Log("ADicionou");
         clothes.Add(newCloth);
 
     }
@@ -47,7 +44,7 @@ public class ClothInventory : MonoBehaviour
         currentSelectedClothIndex = -1;
     }
 
-    public void SetSelectedCloth(int index)
+    public virtual void SetSelectedCloth(int index)
     {
         currentSelectedClothIndex = index;
     }

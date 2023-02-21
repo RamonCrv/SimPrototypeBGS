@@ -12,7 +12,7 @@ public class RetractableUI : MonoBehaviour
     protected bool isOpen = true;
     protected bool isAnimating = false;
 
-    private CanvasGroup canvasGroup;
+    protected CanvasGroup canvasGroup;
 
     public virtual void Awake()
     {
