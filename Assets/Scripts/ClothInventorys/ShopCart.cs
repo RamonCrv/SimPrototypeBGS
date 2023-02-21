@@ -45,4 +45,14 @@ public class ShopCart : ClothInventory
         return totalBalance;
     }
 
+    public void FinishOrder()
+    {
+        bool hasBought = PlayerInventory.Instance.Purchase(GetTotalCartBalance());
+        if (hasBought == true)
+        {
+            ClearList();
+            OnChangeClothesOnShopCart?.Invoke(clothes);
+        }
+    }
+
 }

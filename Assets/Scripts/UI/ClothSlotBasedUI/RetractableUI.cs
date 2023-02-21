@@ -8,7 +8,7 @@ public class RetractableUI : MonoBehaviour
     [SerializeField] protected Vector2 closePosition;
     [SerializeField] protected Vector2 openScale;
 
-    protected float animationTime = 0.2f;
+    protected float animationTime = 0.3f;
     protected bool isOpen = true;
     protected bool isAnimating = false;
 
@@ -58,10 +58,10 @@ public class RetractableUI : MonoBehaviour
 
     }
 
-    protected void AnimatePanel(Vector2 position, Vector2 scale, float alpha)
+    protected void AnimatePanel(Vector2 position, Vector2 scale, float alpha, LeanTweenType easingType = LeanTweenType.notUsed)
     {
         LeanTween.moveLocal(gameObject, position, animationTime);
-        LeanTween.scale(gameObject, scale, animationTime);
+        LeanTween.scale(gameObject, scale, animationTime).setEase(easingType);
         LeanTween.alphaCanvas(canvasGroup, alpha, animationTime);
     }
 

@@ -40,8 +40,6 @@ public class ShopCartUI : ClothSlotBasedUI
         ShopCart.Instance.SetSelectedCloth(index);
         UpdateCurrentSelectedClothPrice();
 
-
-
     }
 
     private void UpdateCurrentSelectedClothPrice()

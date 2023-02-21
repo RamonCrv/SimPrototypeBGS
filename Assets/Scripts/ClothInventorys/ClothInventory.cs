@@ -63,4 +63,9 @@ public class ClothInventory : MonoBehaviour
 
         return clothes[currentSelectedClothIndex];
     }
+
+    public void ClearList()
+    {
+        clothes.Clear();
+    }
 }
