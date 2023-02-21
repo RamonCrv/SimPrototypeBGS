@@ -13,8 +13,8 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     private void Awake()
     {
-        DialogueManager.OnStartDialogue += StartInteracting;
-        DialogueManager.OnFinishDialogue += StopInteracting;
+        DialogueManager.OnStartDialogue += SetTalkingState;
+        
 
         rigidBody2D = GetComponent<Rigidbody2D>();
         playerInput = new PlayerInput();
@@ -32,7 +32,9 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
                 playerInput.Disable();
                 break;
             case PlayerState.Interacting:
-
+                break;
+            case PlayerState.Talking:
+                DialogueManager.OnFinishDialogue += SetWalkState;
                 break;
             default:
 
@@ -51,6 +53,10 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
                 break;
             case PlayerState.Interacting:
 
+                break;
+
+            case PlayerState.Talking:
+                DialogueManager.OnFinishDialogue += SetWalkState;
                 break;
             default:
                 break;
@@ -85,20 +91,20 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     }
 
-    private void StartInteracting()
+    private void SetTalkingState()
     {
-        ChangeState(PlayerState.Interacting);
+        ChangeState(PlayerState.Talking);
     }
 
-    private void StopInteracting()
+    private void SetWalkState()
     {
         ChangeState(PlayerState.Walking);
     }
 
     private void OnDisable()
     {
-        DialogueManager.OnStartDialogue -= StartInteracting;
-        DialogueManager.OnFinishDialogue -= StopInteracting;
+        DialogueManager.OnStartDialogue -= SetTalkingState;
+        OnExitState();
     }
 
 }
@@ -106,6 +112,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 public enum PlayerState
 {
     Walking,
+    Talking,
     Interacting
 
 }

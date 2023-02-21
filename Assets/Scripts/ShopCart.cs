@@ -4,53 +4,33 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class ShopCart : MonoBehaviour
+public class ShopCart : ClothInventory
 {
     public static ShopCart Instance { get; private set; }    
-    public static Action OnChangeClothsOnShopCart;
-    [SerializeField] private int currentSelectedClothIndex = -1;
-    [SerializeField] public List<Cloth> cloths;
+    public static Action<List<Cloth>> OnChangeClothesOnShopCart;
+
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void RemoveClothFromCart()
+    public override void RemoveClothFromCart()
     {
-        if (currentSelectedClothIndex == -1)
-        {
-            return;
-        }
-
-        cloths.RemoveAt(currentSelectedClothIndex);
-        OnChangeClothsOnShopCart?.Invoke();
+        base.RemoveClothFromCart();
+        OnChangeClothesOnShopCart?.Invoke(clothes);
     }
 
-    public void ResetSelectedCloth()
+    public override void AddClothToCart(Cloth newCloth)
     {
-        currentSelectedClothIndex = -1;
-    }
-
-    public void SetSelectedCloth(int index)
-    {
-        currentSelectedClothIndex = index;
-    }
-
-    public Cloth GetCurrentSelectedCloth()
-    {
-        if (currentSelectedClothIndex == -1)
-        {
-            return null;
-        }
-
-        return cloths[currentSelectedClothIndex];
+        base.AddClothToCart(newCloth);
+        OnChangeClothesOnShopCart?.Invoke(clothes);
     }
 
     public float GetTotalCartBalance()
     {
         float totalBalance = 0;
-        foreach (var cloth in cloths)
+        foreach (var cloth in clothes)
         {
             totalBalance += cloth.price;
         }
