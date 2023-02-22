@@ -19,6 +19,7 @@ public class ClothesRackUI : ClothSlotBasedUI
     {
         base.ShowUI();
         ShopCartUI.Instance.ShowUI();
+        UpdateSelectedItemPriceUI();
         UpdateSlotsUI(ClothesRack.Instance.clothes);
     }
 
@@ -37,7 +38,13 @@ public class ClothesRackUI : ClothSlotBasedUI
         base.SlotSelectManager(selectedClothSlot);
         int index = clothesSlots.IndexOf(selectedClothSlot);
         ClothesRack.Instance.SetSelectedCloth(index);
+        UpdateSelectedItemPriceUI();
 
+
+    }
+
+    private void UpdateSelectedItemPriceUI()
+    {
         Cloth cloth = ClothesRack.Instance.GetCurrentSelectedCloth();
         if (cloth != null)
         {
@@ -47,7 +54,6 @@ public class ClothesRackUI : ClothSlotBasedUI
         {
             selectedItemPriceUIText.text = "$0.00";
         }
-
     }
 
     private void OnDisable()

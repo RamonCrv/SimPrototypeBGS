@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class InventortUI : ClothSlotBasedUI
 {
+    public static InventortUI Instance { get; private set; }
     [SerializeField] private Image currentEquipedClothUI;
     public override void Awake()
     {
         base.Awake();
+        Instance = this;
         PlayerInventory.OnChangeClothesOnInventory += UpdateSlotsUI;
         InventoryClothSlot.OnSelectInventoryClothSlot += SlotSelectManager;
 

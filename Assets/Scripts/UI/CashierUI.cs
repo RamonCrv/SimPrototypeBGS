@@ -30,7 +30,7 @@ public class CashierUI : RetractableUI
     private void UpdateTotalBalance(List<Cloth> cloths = null)
     {
         float totalBalance = ShopCart.Instance.GetTotalCartBalance();
-        totalBalanceText.text = "$" + totalBalance.ToString("0.00");
+        totalBalanceText.text = "-$" + totalBalance.ToString("0.00");
     }
 
     private void OnDisable()

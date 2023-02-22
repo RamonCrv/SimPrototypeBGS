@@ -87,6 +87,21 @@ public class PlayerInventory : ClothInventory
         }
     }
 
+    public void SellCloth()
+    {
+        Cloth cloth = GetCurrentSelectedCloth();
+        if (cloth != null)
+        {
+            GainMoney(equipedCloth.price);           
+            if (cloth == equipedCloth)
+            {
+                equipedCloth = null;
+            }
+            RemoveClothFromList();
+
+        }
+    }
+
 
 
 }
