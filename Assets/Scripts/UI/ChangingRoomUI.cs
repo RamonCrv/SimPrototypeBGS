@@ -11,6 +11,7 @@ public class ChangingRoomUI : RetractableUI
     {
         base.Awake();
         ShopCart.OnSelectNewCloth += UpdateClothImage;
+        ShopCart.OnChangeClothesOnShopCart += UpdateUIOnChangeShopCart;
     }
 
     public override void ShowUI()
@@ -43,6 +44,11 @@ public class ChangingRoomUI : RetractableUI
         
     }
 
+    private void UpdateUIOnChangeShopCart(List<Cloth> clothes)
+    {
+        UpdateClothImage();
+    }
+
     private void ResetClothImage()
     {
         clothImage.enabled = false;
@@ -51,6 +57,7 @@ public class ChangingRoomUI : RetractableUI
     private void OnDisable()
     {
         ShopCart.OnSelectNewCloth -= UpdateClothImage;
+        ShopCart.OnChangeClothesOnShopCart -= UpdateUIOnChangeShopCart;
     }
 
 

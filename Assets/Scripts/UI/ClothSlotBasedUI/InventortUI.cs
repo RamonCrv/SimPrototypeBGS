@@ -23,6 +23,16 @@ public class InventortUI : ClothSlotBasedUI
 
     }
 
+    public override void HideUI()
+    {
+        base.HideUI();
+        if (PlayerInventory.Instance != null)
+        {
+            PlayerInventory.Instance.ResetSelectedCloth();
+        }
+       
+    }
+
     protected override void UpdateSlotsUI(List<Cloth> cloths)
     {
         base.UpdateSlotsUI(cloths);

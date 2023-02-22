@@ -25,6 +25,15 @@ public class ShopCartUI : ClothSlotBasedUI
         UpdateSlotsUI(ShopCart.Instance.clothes);
     }
 
+    public override void HideUI()
+    {
+        base.HideUI();
+        if (ShopCart.Instance != null)
+        {
+            ShopCart.Instance.ResetSelectedCloth();
+        }
+    }
+
     protected override void UpdateSlotsUI(List<Cloth> cloths)
     {
         

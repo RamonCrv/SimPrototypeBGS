@@ -92,7 +92,7 @@ public class PlayerInventory : ClothInventory
         Cloth cloth = GetCurrentSelectedCloth();
         if (cloth != null)
         {
-            GainMoney(equipedCloth.price);           
+            GainMoney(cloth.price);           
             if (cloth == equipedCloth)
             {
                 equipedCloth = null;
