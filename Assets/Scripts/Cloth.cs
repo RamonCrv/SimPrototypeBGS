@@ -7,5 +7,5 @@ public class Cloth : ScriptableObject
 {
     public Sprite clothMainSprite;
     public float price;
-    public Sprite clothSpriteSheet;
+    public SpriteSheet clothSpriteSheet;
 }

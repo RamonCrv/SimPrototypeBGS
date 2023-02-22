@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - name: ANDRESSA
-    sentence: Bom dia senhor
+    sentence: Good morning Sir.
   - name: ANDRESSA
-    sentence: Como posso ajudar?
+    sentence: If you want to pay for your clothes you may go to the front of the
+      couter please.

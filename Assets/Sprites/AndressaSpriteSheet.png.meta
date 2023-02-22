@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -11515,10 +11515,10 @@ TextureImporter:
       AndressaSpriteSheet_266: 1323952973
       AndressaSpriteSheet_269: -272328427
       AndressaSpriteSheet_70: 729532683
+      AndressaSpriteSheet_383: 495149919
       AndressaSpriteSheet_315: 167771811
       AndressaSpriteSheet_184: 2009626412
       AndressaSpriteSheet_465: -1834646813
-      AndressaSpriteSheet_383: 495149919
       AndressaSpriteSheet_255: -626957827
       AndressaSpriteSheet_103: 104944557
       AndressaSpriteSheet_174: -69079648
@@ -11624,10 +11624,10 @@ TextureImporter:
       AndressaSpriteSheet_56: -637820371
       AndressaSpriteSheet_124: 1745707516
       AndressaSpriteSheet_461: 760087935
-      AndressaSpriteSheet_189: 1209374167
+      AndressaSpriteSheet_424: 380110980
       AndressaSpriteSheet_239: -692994584
       AndressaSpriteSheet_328: -173425736
-      AndressaSpriteSheet_424: 380110980
+      AndressaSpriteSheet_189: 1209374167
       AndressaSpriteSheet_471: 1806509698
       AndressaSpriteSheet_213: -1997997036
       AndressaSpriteSheet_35: -712818073
@@ -11635,15 +11635,15 @@ TextureImporter:
       AndressaSpriteSheet_295: -76012092
       AndressaSpriteSheet_460: 332221630
       AndressaSpriteSheet_4: 141392567
-      AndressaSpriteSheet_115: 1225346125
       AndressaSpriteSheet_262: -1139476667
       AndressaSpriteSheet_2: -1009449835
       AndressaSpriteSheet_505: 896730243
+      AndressaSpriteSheet_115: 1225346125
       AndressaSpriteSheet_66: 537892861
-      AndressaSpriteSheet_463: -983546140
       AndressaSpriteSheet_15: 572112825
       AndressaSpriteSheet_76: -127729487
       AndressaSpriteSheet_469: -727727625
+      AndressaSpriteSheet_463: -983546140
       AndressaSpriteSheet_436: -1685447840
       AndressaSpriteSheet_434: -344876877
       AndressaSpriteSheet_107: -615983483

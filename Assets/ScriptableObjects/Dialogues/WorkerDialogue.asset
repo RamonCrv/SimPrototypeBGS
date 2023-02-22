@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de57878f32838440babae2fae55c8e9, type: 3}
+  m_Name: WorkerDialogue
+  m_EditorClassIdentifier: 
+  sentences:
+  - name: Mike
+    sentence: Good morning Sir.
+  - name: Mike
+    sentence: Welcome to the best cloth store in town.
+  - name: Mike
+    sentence: Feel free to take look on some clothes on the Clothes Racks.
+  - name: Mike
+    sentence: If you would like to try them, there are a many mirrors around the
+      store.
+  - name: Mike
+    sentence: After you finish shopping, you can pay on the right counter.
+  - name: Mike
+    sentence: And you can also sell some of you older clothes on the left counter.

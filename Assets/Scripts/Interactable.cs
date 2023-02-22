@@ -24,12 +24,12 @@ public class Interactable : MonoBehaviour
 
     public void Select()
     {
-        material.SetFloat("_OutlineAlpha", 1);
+        material.SetFloat("_InnerOutlineAlpha", 0.25f);
     }
 
     public void Deselect()
     {
-        material.SetFloat("_OutlineAlpha", 0);
+        material.SetFloat("_InnerOutlineAlpha", 0);
     }
 
 }
