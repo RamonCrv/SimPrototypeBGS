@@ -16,6 +16,8 @@ public class InteractionManager : MonoBehaviour
         playerInput.Enable();
         playerInput.PlayerActions.Interact.performed += Interact;
         PlayerController.OnReciveWalkInput += IdentifyInteractables;
+        PlayerController.OnEnterWalkingState += EnableInteraction;
+        PlayerController.OnExitWalkingState += DisableInteraction;
     }
 
     public void IdentifyInteractables(Vector2 direction) //Indentify and interactable object in front of player
@@ -132,6 +134,8 @@ public class InteractionManager : MonoBehaviour
     {
         playerInput.PlayerActions.Interact.performed -= Interact;
         PlayerController.OnReciveWalkInput -= IdentifyInteractables;
+        PlayerController.OnEnterWalkingState -= EnableInteraction;
+        PlayerController.OnExitWalkingState -= DisableInteraction;
     }
 
 }

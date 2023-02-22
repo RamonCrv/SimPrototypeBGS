@@ -5,6 +5,7 @@ using TMPro;
 
 public class ShopCartUI : ClothSlotBasedUI
 {
+    [SerializeField] private GameObject shopCartButton;
     [SerializeField] private TextMeshProUGUI selectedItemPriceUIText;
     [SerializeField] private TextMeshProUGUI totalPriceUIText;
     public static ShopCartUI Instance { get; private set; }
@@ -60,5 +61,7 @@ public class ShopCartUI : ClothSlotBasedUI
         ShopCart.OnChangeClothesOnShopCart -= UpdateSlotsUI;
         ShopCartClothSlot.OnSelectCartShopCartClothSlot -= SlotSelectManager;
     }
+
+    //private void HideButton
 
 }

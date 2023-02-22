@@ -39,6 +39,21 @@ public class ClothInventory : MonoBehaviour
 
     }
 
+    public void AddClothesToList(List<Cloth> newClothes)
+    {
+        foreach (var newCloth in newClothes)
+        {
+            if (newCloth == null)
+            {
+                return;
+            }
+
+            clothes.Add(newCloth);
+        }
+       
+
+    }
+
     public void ResetSelectedCloth()
     {
         currentSelectedClothIndex = -1;

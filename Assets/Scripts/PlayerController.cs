@@ -10,12 +10,16 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
     private Rigidbody2D rigidBody2D;
     [SerializeField] private float speed = 10;
     public static Action<Vector2> OnReciveWalkInput;
+    public static PlayerController Instance { get; private set; }
+
+    public static Action OnEnterWalkingState;
+    public static Action OnExitWalkingState;
 
     private void Awake()
     {
         DialogueManager.OnStartDialogue += SetTalkingState;
-        
 
+        Instance = this;
         rigidBody2D = GetComponent<Rigidbody2D>();
         playerInput = new PlayerInput();
 
@@ -28,13 +32,14 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
         switch (currentState)
         {
             case PlayerState.Walking:
-
+                OnExitWalkingState?.Invoke();
                 playerInput.Disable();
+
                 break;
             case PlayerState.Interacting:
                 break;
             case PlayerState.Talking:
-                DialogueManager.OnFinishDialogue += SetWalkState;
+                DialogueManager.OnFinishDialogue += SetWalkingState;
                 break;
             default:
 
@@ -49,6 +54,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
         {
             case PlayerState.Walking:
                 playerInput.Enable();
+                OnEnterWalkingState?.Invoke();
 
                 break;
             case PlayerState.Interacting:
@@ -56,7 +62,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
                 break;
 
             case PlayerState.Talking:
-                DialogueManager.OnFinishDialogue += SetWalkState;
+                DialogueManager.OnFinishDialogue += SetWalkingState;
                 break;
             default:
                 break;
@@ -91,14 +97,19 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     }
 
-    private void SetTalkingState()
+    public void SetTalkingState()
     {
         ChangeState(PlayerState.Talking);
     }
 
-    private void SetWalkState()
+    public void SetWalkingState()
     {
         ChangeState(PlayerState.Walking);
+    }
+
+    public void SetInteractingState()
+    {
+        ChangeState(PlayerState.Interacting);
     }
 
     private void OnDisable()

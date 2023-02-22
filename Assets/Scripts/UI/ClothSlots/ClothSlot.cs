@@ -8,8 +8,11 @@ public class ClothSlot : MonoBehaviour
     [SerializeField] private Image clothImage;
     [SerializeField] private Image selectedIcon;
     private Cloth slotCloth;
-    
 
+    private void Awake()
+    {
+        Deselect();
+    }
     public virtual void Select()
     {
         selectedIcon.enabled = true;

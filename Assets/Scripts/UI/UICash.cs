@@ -8,11 +8,12 @@ public class UICash : MonoBehaviour
     private void Awake()
     {
         PlayerInventory.OnMoneyValueChange += UpdateCurrentMoneyUI;
+        UpdateCurrentMoneyUI();
     }
 
-    private void UpdateCurrentMoneyUI(float money)
+    private void UpdateCurrentMoneyUI()
     {
-        currentMoneyUI.text = "$" + money.ToString("0.00");
+        currentMoneyUI.text = "$" + PlayerInventory.Instance.currentyMoney.ToString("0.00");
     }
 
     private void OnDisable()

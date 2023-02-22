@@ -50,6 +50,7 @@ public class ShopCart : ClothInventory
         bool hasBought = PlayerInventory.Instance.Purchase(GetTotalCartBalance());
         if (hasBought == true)
         {
+            PlayerInventory.Instance.AddClothesToList(clothes);
             ClearList();
             OnChangeClothesOnShopCart?.Invoke(clothes);
         }

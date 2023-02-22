@@ -46,6 +46,7 @@ public class RetractableUI : MonoBehaviour
     {
         isOpen = true;
         AnimatePanel(openPosition, openScale, 1);
+        PlayerController.Instance.SetInteractingState();
     }
 
     public virtual void HideUI()
@@ -54,6 +55,11 @@ public class RetractableUI : MonoBehaviour
         if (canvasGroup != null)
         {
             AnimatePanel(closePosition, Vector2.zero, 0);
+        }
+
+        if (PlayerController.Instance != null)
+        {
+            PlayerController.Instance.SetWalkingState();
         }
 
     }
