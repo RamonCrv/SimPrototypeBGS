@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 {
-    private PlayerInput playerInput;
+    public PlayerInput PlayerInput { get; private set; }
     private Rigidbody2D rigidBody2D;
     [SerializeField] private float speed = 10;
     public static Action<Vector2> OnReciveWalkInput;
@@ -21,7 +21,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
         Instance = this;
         rigidBody2D = GetComponent<Rigidbody2D>();
-        playerInput = new PlayerInput();
+        PlayerInput = new PlayerInput();
 
         ChangeState(PlayerState.Walking);
 
@@ -33,7 +33,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
         {
             case PlayerState.Walking:
                 OnExitWalkingState?.Invoke();
-                playerInput.Disable();
+                PlayerInput.Disable();
 
                 break;
             case PlayerState.Interacting:
@@ -53,7 +53,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
         switch (newState)
         {
             case PlayerState.Walking:
-                playerInput.Enable();
+                PlayerInput.Enable();
                 OnEnterWalkingState?.Invoke();
 
                 break;
@@ -75,7 +75,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
         switch (currentState)
         {
             case PlayerState.Walking:
-                Vector2 walkInputValues = playerInput.PlayerActions.Walk.ReadValue<Vector2>();
+                Vector2 walkInputValues = PlayerInput.PlayerActions.Walk.ReadValue<Vector2>();
                 walkInputValues = Vector2Converter.ConvertToSigleDirection(walkInputValues); // Convert input to deny diagonal movement
                 OnReciveWalkInput?.Invoke(walkInputValues);
                 MoveCharacter(walkInputValues);

@@ -26,10 +26,8 @@ public class PlayerInventory : ClothInventory
 
     public override void RemoveClothFromList()
     {
-        if (clothes.Count > 1)
-        {
-            return;
-        }
+        if (equipedCloth == clothes[currentSelectedClothIndex]) return;
+
         base.RemoveClothFromList();
         OnChangeClothesOnInventory?.Invoke(clothes);
     }
@@ -97,13 +95,11 @@ public class PlayerInventory : ClothInventory
     public void SellCloth()
     {
         Cloth cloth = GetCurrentSelectedCloth();
+        if (cloth == equipedCloth) return;
+
         if (cloth != null)
         {
             GainMoney(cloth.price);           
-            if (cloth == equipedCloth)
-            {
-                equipedCloth = null;
-            }
             RemoveClothFromList();
 
         }

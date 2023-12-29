@@ -15,4 +15,75 @@ MonoBehaviour:
   clothMainSprite: {fileID: -850101389, guid: 0ceb1afec41656245ac463963d61bf8f, type: 3}
   price: 22.75
   clothSpriteSheet:
-    sprites: []
+    upIddleSheet:
+      animationSheet:
+      - {fileID: 2096515494, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 609839745, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1887851038, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -990644530, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -649647732, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -620151559, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.166
+    downIddleSheet:
+      animationSheet:
+      - {fileID: -1842173850, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -2033192355, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1147124093, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -921105936, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -391479240, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1814564941, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.166
+    leftIddleSheet:
+      animationSheet:
+      - {fileID: 689709214, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 420417643, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1686068708, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -2042093080, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1336222852, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -2127596757, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.166
+    rightIddleSheet:
+      animationSheet:
+      - {fileID: -901259962, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1235110152, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1927435302, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 829549411, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1803637673, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 300963307, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.166
+    upWalkingSheet:
+      animationSheet:
+      - {fileID: 1438539496, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -633147912, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1146562117, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1692806958, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -540257448, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 61287031, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.1
+    downWalkingSheet:
+      animationSheet:
+      - {fileID: -870697997, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 2038950917, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1863568667, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1005728533, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1813212691, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1844019324, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.1
+    leftWalkingSheet:
+      animationSheet:
+      - {fileID: 2044920746, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1899257088, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1455562823, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1865509843, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: 1346346308, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -196507736, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.1
+    rightWalkingSheet:
+      animationSheet:
+      - {fileID: 2090590640, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -609394355, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -1794922636, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -2095015121, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -2145288973, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      - {fileID: -806761147, guid: c53eab4305e9e5346acbd473be88c255, type: 3}
+      animationSpeed: 0.1

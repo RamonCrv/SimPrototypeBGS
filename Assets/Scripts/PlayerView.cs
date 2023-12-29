@@ -9,10 +9,12 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     private Coroutine changeSpriteCoroutine;
     private SpriteSheetAnimation currentSpriteSheetAnimation;
     private SpriteSheet currentClothSpriteSheet;
+    [SerializeField] private AnimationState lastState;
 
     private void OnEnable()
     {
         PlayerInventory.OnChangeEquipedCloth += SetCurrentClothSpriteSheet;
+        PlayerController.OnReciveWalkInput += DetermineWalkingSprite;
 
         if (spriteRenderer == null)
         {
@@ -27,6 +29,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
         if (currentSpriteSheetAnimation == null)
         {
             currentSpriteSheetAnimation = currentClothSpriteSheet.DownIddleSheetAnimation;
+            lastState = AnimationState.DownIdle;
         }
         changeSpriteCoroutine = StartCoroutine(ChangeSpriteTimer());
     }
@@ -35,46 +38,57 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            ChangeState(AnimationState.UpWalking);
-        }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            ChangeState(AnimationState.DownWalking);
-        }
+        DetermineWalkingSprite(PlayerController.Instance.PlayerInput.PlayerActions.Walk.ReadValue<Vector2>());
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            ChangeState(AnimationState.LeftWalking);
-        }
+    }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            ChangeState(AnimationState.RightWalking);
-        }
 
-        if (Input.GetKeyUp(KeyCode.W))
+    private void DetermineWalkingSprite(Vector2 movementInput)
+    {
+        if (movementInput.magnitude > 0.1f)
         {
-            ChangeState(AnimationState.UpIdle);
-        }
+            float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
 
-        if (Input.GetKeyUp(KeyCode.S))
+            // Determine the angle and set the appropriate sprite.
+            if (angle > 45f && angle <= 135f)
+            {
+                ChangeState(AnimationState.UpWalking);
+            }
+            else if (angle > -45f && angle <= 45f)
+            {
+                ChangeState(AnimationState.RightWalking);
+            }
+            else if (angle > -135f && angle <= -45f)
+            {
+                ChangeState(AnimationState.DownWalking);
+            }
+            else
+            {
+                ChangeState(AnimationState.LeftWalking);
+            }
+        }
+        else
         {
-            ChangeState(AnimationState.DownIdle);
+            switch (currentState)
+            {
+                case AnimationState.UpWalking:
+                    ChangeState(AnimationState.UpIdle);
+                    break;
+                case AnimationState.DownWalking:
+                    ChangeState(AnimationState.DownIdle);
+                    break;
+                case AnimationState.LeftWalking:
+                    ChangeState(AnimationState.LeftIdle);
+                    break;
+                case AnimationState.RightWalking:
+                    ChangeState(AnimationState.RightIdle);
+                    break;
+                default:
+                    break;
+            }
         }
-
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            ChangeState(AnimationState.LeftIdle);
-        }
-
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            ChangeState(AnimationState.RightIdle);
-        }
-
+            
     }
 
     private void SetCurrentClothSpriteSheet(Cloth newCloth)
@@ -85,9 +99,13 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     public override void ChangeState(AnimationState newState)
     {
+
         if (newState == currentState) return;
-        base.ChangeState(newState);
         
+        lastState = currentState;
+       
+        base.ChangeState(newState);
+
     }
 
     private void ResetSpriteCoroutine()
@@ -185,6 +203,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     private void OnDisable()
     {
         PlayerInventory.OnChangeEquipedCloth -= SetCurrentClothSpriteSheet;
+        PlayerController.OnReciveWalkInput -= DetermineWalkingSprite;
     }
 
 

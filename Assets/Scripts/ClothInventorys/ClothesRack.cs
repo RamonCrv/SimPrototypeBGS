@@ -28,7 +28,6 @@ public class ClothesRack : ClothInventory
     public void AddClothToCart()
     {
         Cloth cloth = GetCurrentSelectedCloth();
-        Debug.Log(cloth);
         ShopCart.Instance.AddClothToList(GetCurrentSelectedCloth());
     }
 }
