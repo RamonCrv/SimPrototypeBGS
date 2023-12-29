@@ -11,6 +11,7 @@ public class PlayerInventory : ClothInventory
     public static Action<List<Cloth>> OnChangeClothesOnInventory;
     public static Action OnSelectNewCloth;
     public static Action OnMoneyValueChange;
+    public static Action<Cloth> OnChangeEquipedCloth;
 
     public float currentyMoney { get; private set; }   
     private float startValue = 100;
@@ -19,11 +20,16 @@ public class PlayerInventory : ClothInventory
     private void Awake()
     {
         Instance = this;
+        Debug.Log(Instance.GetCurrentEquipedCloth());
         GainMoney(startValue);
     }
 
     public override void RemoveClothFromList()
     {
+        if (clothes.Count > 1)
+        {
+            return;
+        }
         base.RemoveClothFromList();
         OnChangeClothesOnInventory?.Invoke(clothes);
     }
@@ -47,6 +53,7 @@ public class PlayerInventory : ClothInventory
         {
             //Chamar função que mdua o player
             equipedCloth = cloth;
+            OnChangeEquipedCloth?.Invoke(equipedCloth);
             OnChangeClothesOnInventory?.Invoke(clothes);
         }
     }

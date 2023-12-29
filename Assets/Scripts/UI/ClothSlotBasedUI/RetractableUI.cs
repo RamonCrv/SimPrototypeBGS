@@ -66,8 +66,8 @@ public class RetractableUI : MonoBehaviour
 
     protected void AnimatePanel(Vector2 position, Vector2 scale, float alpha, LeanTweenType easingType = LeanTweenType.notUsed)
     {
-        LeanTween.moveLocal(gameObject, position, animationTime);
-        LeanTween.scale(gameObject, scale, animationTime).setEase(easingType);
+        LeanTween.moveLocal(gameObject, position, animationTime).setEase(easingType);
+        LeanTween.scale(gameObject, scale, animationTime);
         LeanTween.alphaCanvas(canvasGroup, alpha, animationTime);
     }
 

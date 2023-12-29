@@ -15,4 +15,75 @@ MonoBehaviour:
   clothMainSprite: {fileID: -554690706, guid: f917a9db8cd60974195a4ede982d3d87, type: 3}
   price: 22.75
   clothSpriteSheet:
-    sprites: []
+    upIddleSheet:
+      animationSheet:
+      - {fileID: -371450945, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 734573030, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1364399248, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1733958625, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1935436437, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1029988140, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.166
+    downIddleSheet:
+      animationSheet:
+      - {fileID: 1908454217, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1713484213, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1921668080, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -715446273, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1915844245, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1810033113, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.166
+    leftIddleSheet:
+      animationSheet:
+      - {fileID: 42225286, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -189243417, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -656196937, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1744087427, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -2012547283, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1610547250, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.166
+    rightIddleSheet:
+      animationSheet:
+      - {fileID: -822884776, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1559683964, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 2593114, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1019177344, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1777429712, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1473846773, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.166
+    upWalkingSheet:
+      animationSheet:
+      - {fileID: -1381789300, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 2127550588, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 846671872, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1835194362, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 305186033, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -521268741, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.1
+    downWalkingSheet:
+      animationSheet:
+      - {fileID: -1245310554, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1794593960, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 987508875, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -633715081, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1647495280, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1215335165, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.1
+    leftWalkingSheet:
+      animationSheet:
+      - {fileID: 220401086, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 962358169, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1655161052, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1809665853, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1966906197, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -294752205, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.1
+    rightWalkingSheet:
+      animationSheet:
+      - {fileID: -2095161542, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 673372460, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -24949360, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -168807410, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: 1886615389, guid: 668986371936164439adce192ef5db81, type: 3}
+      - {fileID: -1663318382, guid: 668986371936164439adce192ef5db81, type: 3}
+      animationSpeed: 0.1

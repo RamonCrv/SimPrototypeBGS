@@ -7,7 +7,7 @@ public class StateMachineMonoBehaviour<TState>: MonoBehaviour, IStateMachine<TSt
 {
     public TState currentState { get; set; }
 
-    public void ChangeState(TState newState)
+    public virtual void ChangeState(TState newState)
     {
         OnExitState();
         currentState = newState;
