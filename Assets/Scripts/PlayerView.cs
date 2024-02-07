@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 {
@@ -9,7 +10,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     private Coroutine changeSpriteCoroutine;
     private SpriteSheetAnimation currentSpriteSheetAnimation;
     private SpriteSheet currentClothSpriteSheet;
-    [SerializeField] private AnimationState lastState;
+    [SerializeField] private NetworkVariable<AnimationState> lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     private void OnEnable()
     {
@@ -29,7 +30,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
         if (currentSpriteSheetAnimation == null)
         {
             currentSpriteSheetAnimation = currentClothSpriteSheet.DownIddleSheetAnimation;
-            lastState = AnimationState.DownIdle;
+            lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle);
         }
         changeSpriteCoroutine = StartCoroutine(ChangeSpriteTimer());
     }
@@ -38,6 +39,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void Update()
     {
+        if (!IsOwner) return;
 
         DetermineWalkingSprite(PlayerController.Instance.PlayerInput.PlayerActions.Walk.ReadValue<Vector2>());
 
@@ -46,6 +48,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void DetermineWalkingSprite(Vector2 movementInput)
     {
+        if (!IsOwner) return;
         if (movementInput.magnitude > 0.1f)
         {
             float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
@@ -102,7 +105,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
         if (newState == currentState) return;
         
-        lastState = currentState;
+        lastState = new NetworkVariable<AnimationState>(currentState);
        
         base.ChangeState(newState);
 

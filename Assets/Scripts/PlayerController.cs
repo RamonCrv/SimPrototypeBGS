@@ -72,9 +72,12 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     private void FixedUpdate()
     {
+        if (!IsOwner) return;
         switch (currentState)
         {
             case PlayerState.Walking:
+               
+
                 Vector2 walkInputValues = PlayerInput.PlayerActions.Walk.ReadValue<Vector2>();
                 walkInputValues = Vector2Converter.ConvertToSigleDirection(walkInputValues); // Convert input to deny diagonal movement
                 OnReciveWalkInput?.Invoke(walkInputValues);
@@ -92,9 +95,8 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
     }
 
     private void MoveCharacter(Vector2 walkInputValues)
-    { 
+    {
         rigidBody2D.velocity = walkInputValues * speed * Time.deltaTime;
-
     }
 
     public void SetTalkingState()
