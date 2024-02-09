@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.InputSystem;
 
 public class PlayerController : StateMachineMonoBehaviour<PlayerState>
@@ -17,19 +18,26 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     private void Awake()
     {
-        DialogueManager.OnStartDialogue += SetTalkingState;
+        
 
-        Instance = this;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        DialogueManager.OnStartDialogue += SetTalkingState;
         rigidBody2D = GetComponent<Rigidbody2D>();
         PlayerInput = new PlayerInput();
-
         ChangeState(PlayerState.Walking);
+        if (!IsOwner) return;
+
+        Instance = this;
 
     }
 
     public override void OnExitState()
     {
-        switch (currentState)
+        switch (currentState.Value)
         {
             case PlayerState.Walking:
                 OnExitWalkingState?.Invoke();
@@ -72,8 +80,7 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
 
     private void FixedUpdate()
     {
-        if (!IsOwner) return;
-        switch (currentState)
+        switch (currentState.Value)
         {
             case PlayerState.Walking:
                
@@ -113,6 +120,9 @@ public class PlayerController : StateMachineMonoBehaviour<PlayerState>
     {
         ChangeState(PlayerState.Interacting);
     }
+
+    
+    
 
     private void OnDisable()
     {

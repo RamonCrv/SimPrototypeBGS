@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8378221507651539563}
   - component: {fileID: 3801088870020001130}
+  - component: {fileID: 4705178580312468692}
   - component: {fileID: 5358225550011832675}
   - component: {fileID: 4850714859812810939}
-  - component: {fileID: 4705178580312468692}
   - component: {fileID: -6743742836966859600}
   - component: {fileID: -357939575694808815}
   - component: {fileID: 1893932346703102951}
+  - component: {fileID: 2566808735131255150}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -85,6 +86,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4705178580312468692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916424614089564969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3347278619
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &5358225550011832675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bb01b841680c648af1ef0d614e2c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState:
+    m_InternalValue: 0
   speed: 250
 --- !u!212 &4850714859812810939
 SpriteRenderer:
@@ -150,22 +173,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4705178580312468692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3916424614089564969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &-6743742836966859600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,8 +197,12 @@ MonoBehaviour:
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
   InLocalSpace: 0
   Interpolate: 1
+  SlerpPosition: 0
 --- !u!50 &-357939575694808815
 Rigidbody2D:
   serializedVersion: 4
@@ -231,6 +242,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2566808735131255150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916424614089564969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d80549c4073b747871dae727c56688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSelectedClothIndex: -1
+  clothes:
+  - {fileID: 11400000, guid: 8098eff20f790354780ae179c97c220f, type: 2}
+  equipedCloth: {fileID: 11400000, guid: 8098eff20f790354780ae179c97c220f, type: 2}
 --- !u!1 &6204533116839041284
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,4 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca73185b5a033c4ca3b508d0b6c8ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastState: 0
+  currentState:
+    m_InternalValue: 0
+  currentSpriteSheetAnimation:
+    animationSheet: []
+    animationSpeed: 0.166

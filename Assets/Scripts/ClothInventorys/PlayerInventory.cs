@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using Unity.Netcode;
 public class PlayerInventory : ClothInventory
 {
 
@@ -19,8 +20,15 @@ public class PlayerInventory : ClothInventory
 
     private void Awake()
     {
+        
+
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        if (!IsOwner) return;
         Instance = this;
-        Debug.Log(Instance.GetCurrentEquipedCloth());
         GainMoney(startValue);
     }
 

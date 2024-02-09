@@ -13,7 +13,7 @@ public class UICash : MonoBehaviour
 
     private void UpdateCurrentMoneyUI()
     {
-        currentMoneyUI.text = "$" + PlayerInventory.Instance.currentyMoney.ToString("0.00");
+        //currentMoneyUI.text = "$" + PlayerInventory.Instance.currentyMoney.ToString("0.00");
     }
 
     private void OnDisable()

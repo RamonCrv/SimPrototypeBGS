@@ -3553,14 +3553,13 @@ GameObject:
   - component: {fileID: 282111064}
   - component: {fileID: 282111063}
   - component: {fileID: 282111065}
-  - component: {fileID: 282111066}
   m_Layer: 0
   m_Name: === CLOTHINVENTORYS ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &282111063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3610,22 +3609,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24b447ab1db760f4aae3cbe918e64056, type: 2}
   - {fileID: 11400000, guid: 0afe8acc31bb06546b1a1919804b72f0, type: 2}
   - {fileID: 11400000, guid: 244e34bcf14122b4e86d1f2cfd4876fd, type: 2}
---- !u!114 &282111066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282111062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d80549c4073b747871dae727c56688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSelectedClothIndex: -1
-  clothes:
-  - {fileID: 11400000, guid: 8098eff20f790354780ae179c97c220f, type: 2}
-  equipedCloth: {fileID: 11400000, guid: 8098eff20f790354780ae179c97c220f, type: 2}
 --- !u!1 &289449269
 GameObject:
   m_ObjectHideFlags: 0
@@ -18964,7 +18947,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 282111066}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
         m_MethodName: SellCloth
         m_Mode: 1
@@ -20839,7 +20822,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 282111066}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerInventory, Assembly-CSharp
         m_MethodName: EquipCloth
         m_Mode: 1
@@ -22908,7 +22891,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
-    ServerListenAddress: 
+    ServerListenAddress: 127.0.0.1
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -22925,18 +22908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunInBackground: 1
-  LogLevel: 0
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1998177595}
     PlayerPrefab: {fileID: 3916424614089564969, guid: 766d336e00e70704da5a335a3cdd6613, type: 3}
-    NetworkPrefabs:
-    - Override: 0
-      Prefab: {fileID: 3916424614089564969, guid: 766d336e00e70704da5a335a3cdd6613, type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
+    Prefabs:
+      NetworkPrefabsLists: []
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -22952,6 +22929,14 @@ MonoBehaviour:
     LoadSceneTimeOut: 120
     SpawnTimeout: 1
     EnableNetworkLogs: 1
+    OldPrefabList:
+    - Override: 0
+      Prefab: {fileID: 3916424614089564969, guid: 766d336e00e70704da5a335a3cdd6613, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+  RunInBackground: 1
+  LogLevel: 0
 --- !u!4 &1998177597
 Transform:
   m_ObjectHideFlags: 0

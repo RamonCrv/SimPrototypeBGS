@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
 
-public class ClothInventory : MonoBehaviour
+public class ClothInventory : NetworkBehaviour
 {
     [SerializeField] protected int currentSelectedClothIndex = -1;
     [SerializeField] public List<Cloth> clothes;
@@ -26,7 +27,6 @@ public class ClothInventory : MonoBehaviour
 
     public virtual void AddClothToList(Cloth newCloth)
     {
-        Debug.Log(newCloth);
         if (newCloth == null)
         {
             return;

@@ -8,10 +8,10 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     private int currentAnimationSpriteIndex;   
     private SpriteRenderer spriteRenderer;
     private Coroutine changeSpriteCoroutine;
-    private SpriteSheetAnimation currentSpriteSheetAnimation;
-    private SpriteSheet currentClothSpriteSheet;
-    [SerializeField] private NetworkVariable<AnimationState> lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
+    [SerializeField] private SpriteSheetAnimation currentSpriteSheetAnimation = null;
+    [SerializeField] private SpriteSheet currentClothSpriteSheet = null;
+    public List<Sprite> DEBUGSSpriteTest;
+    private NetworkVariable<AnimationState> lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private void OnEnable()
     {
         PlayerInventory.OnChangeEquipedCloth += SetCurrentClothSpriteSheet;
@@ -22,16 +22,18 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        if (currentClothSpriteSheet == null)
-        {          
-            currentClothSpriteSheet = PlayerInventory.Instance.GetCurrentEquipedCloth().clothSpriteSheet;
-        }
+        StartCoroutine(WaitToSearchForInventoryToSpawn());
 
-        if (currentSpriteSheetAnimation == null)
-        {
-            currentSpriteSheetAnimation = currentClothSpriteSheet.DownIddleSheetAnimation;
-            lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle);
-        }
+    }
+
+    private IEnumerator WaitToSearchForInventoryToSpawn()
+    {
+        yield return new WaitForSeconds(0.1f);
+        currentClothSpriteSheet = PlayerInventory.Instance.GetCurrentEquipedCloth().clothSpriteSheet;
+        Debug.Log(PlayerInventory.Instance);
+
+        currentSpriteSheetAnimation = currentClothSpriteSheet.DownIddleSheetAnimation;
+        lastState = new NetworkVariable<AnimationState>(AnimationState.DownIdle);
         changeSpriteCoroutine = StartCoroutine(ChangeSpriteTimer());
     }
 
@@ -39,7 +41,6 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void Update()
     {
-        if (!IsOwner) return;
 
         DetermineWalkingSprite(PlayerController.Instance.PlayerInput.PlayerActions.Walk.ReadValue<Vector2>());
 
@@ -48,7 +49,6 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void DetermineWalkingSprite(Vector2 movementInput)
     {
-        if (!IsOwner) return;
         if (movementInput.magnitude > 0.1f)
         {
             float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
@@ -73,7 +73,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
         }
         else
         {
-            switch (currentState)
+            switch (currentState.Value)
             {
                 case AnimationState.UpWalking:
                     ChangeState(AnimationState.UpIdle);
@@ -97,15 +97,15 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     private void SetCurrentClothSpriteSheet(Cloth newCloth)
     {
         currentClothSpriteSheet = newCloth.clothSpriteSheet;
-        SetCurrentSpriteSheetAnimation(currentState);
+        SetCurrentSpriteSheetAnimation(currentState.Value);
     }
 
     public override void ChangeState(AnimationState newState)
     {
 
-        if (newState == currentState) return;
+        if (newState == currentState.Value) return;
         
-        lastState = new NetworkVariable<AnimationState>(currentState);
+        lastState = new NetworkVariable<AnimationState>(currentState.Value);
        
         base.ChangeState(newState);
 
@@ -126,9 +126,8 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     public override void OnEnterState(AnimationState newState)
     {
         base.OnEnterState(newState);
-
+        Debug.Log("Test states");
         SetCurrentSpriteSheetAnimation(newState);
-
         ResetSpriteCoroutine();
         changeSpriteCoroutine = StartCoroutine(ChangeSpriteTimer());
 
@@ -136,11 +135,13 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void SetCurrentSpriteSheetAnimation(AnimationState state)
     {
+
         switch (state)
         {
             case AnimationState.UpIdle:
                 currentSpriteSheetAnimation = currentClothSpriteSheet.UpIddleSheetAnimation;
-
+                DEBUGSSpriteTest = currentClothSpriteSheet.UpIddleSheetAnimation.AnimationSheet;
+          
                 break;
             case AnimationState.DownIdle:
                 currentSpriteSheetAnimation = currentClothSpriteSheet.DownIddleSheetAnimation;
@@ -173,6 +174,8 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
             default:
                 break;
         }
+
+
     }
 
     public override void OnExitState()
@@ -182,6 +185,7 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
 
     private void SetNewSprite()
     {
+        if (currentAnimationSpriteIndex >= currentSpriteSheetAnimation.AnimationSheet.Count) return;
         
         spriteRenderer.sprite = currentSpriteSheetAnimation.AnimationSheet[currentAnimationSpriteIndex];
     }
@@ -190,7 +194,6 @@ public class PlayerView : StateMachineMonoBehaviour<AnimationState>
     {
         SetNewSprite();
         yield return new WaitForSeconds(currentSpriteSheetAnimation.AnimationSpeed);
-
         if (currentAnimationSpriteIndex + 1 >= currentSpriteSheetAnimation.AnimationSheet.Count)
         {
             currentAnimationSpriteIndex = 0;
